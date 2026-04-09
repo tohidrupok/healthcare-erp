@@ -1,0 +1,112 @@
+<!-- templates/property_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lab Test Add - CRM{% endblock %}
+
+{% block content %} 
+    <div class="rubick px-5 sm:px-8 py-5 before:content-[''] before:bg-gradient-to-b before:from-theme-1 before:to-theme-2 dark:before:from-darkmode-800 dark:before:to-darkmode-800 before:fixed before:inset-0 before:z-[-1]">
+        <!-- BEGIN: Mobile Menu -->
+        {% include 'partials/mobile.html' %}
+        <!-- END: Mobile Menu -->
+        <div class="mt-[4.7rem] flex md:mt-0">
+            <!-- BEGIN: Side Menu -->
+            {% include 'partials/sidebar_list.html' %}
+            <!-- END: Side Menu -->
+            <!-- BEGIN: Content -->
+            <div class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
+                <!-- BEGIN: Top Bar -->  
+				{% include 'partials/header.html' %}               
+                
+           <h2 class="intro-y mt-10 text-lg font-medium">Lab Test Information</h2>
+			<div class="mt-5 grid grid-cols-12 gap-6">
+				<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+					<div class="p-8 bg-white rounded-lg shadow-lg border border-gray-200">
+						<h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+							{% if form.instance.id %}Edit Lab Test{% else %}Add Lab Test{% endif %}
+						</h1>
+
+						<form method="POST" enctype="multipart/form-data">
+							{% csrf_token %}
+
+							<!-- Doctor -->
+							<div class="mb-6">
+								<label for="doctor" class="font-medium text-lg text-gray-700">Doctor</label>
+								<select id="doctor" name="doctor" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									<option value="">Select Doctor</option>
+									{% for doctor in doctors %}
+										<option value="{{ doctor.id }}" {% if form.instance.doctor == doctor %}selected{% endif %}>
+											{{ doctor.user.first_name }} {{ doctor.user.last_name }}
+										</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<!-- Patient -->
+							<div class="mb-6">
+								<label for="patient" class="font-medium text-lg text-gray-700">Patient</label>
+								<select id="patient" name="patient" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									<option value="">Select Patient</option>
+									{% for patient in patients %}
+										<option value="{{ patient.id }}" {% if form.instance.patient == patient %}selected{% endif %}>
+											{{ patient.first_name }} {{ patient.last_name }}
+										</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<!-- Test Name -->
+							<div class="mb-6">
+								<label for="test_name" class="font-medium text-lg text-gray-700">Test Name</label>
+								<input type="text" id="test_name" name="test_name"
+									   value="{{ form.test_name.value|default:form.instance.test_name }}"
+									   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+							</div>
+
+							<!-- Test Date -->
+							<div class="mb-6">
+								<label for="test_date" class="font-medium text-lg text-gray-700">Test Date</label>
+								<input type="date" id="test_date" name="test_date"
+									   value="{{ form.test_date.value|default:form.instance.test_date|date:'Y-m-d' }}"
+									   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+							</div>
+
+							<!-- Status -->
+							<div class="mb-6">
+								<label for="status" class="font-medium text-lg text-gray-700">Status</label>
+								<select id="status" name="status" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									{% for key, value in form.fields.status.choices %}
+										<option value="{{ key }}" {% if form.instance.status == key %}selected{% endif %}>{{ value }}</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<!-- Result -->
+							<div class="mb-6">
+								<label for="result" class="font-medium text-lg text-gray-700">Result</label>
+								<textarea id="result" name="result"
+										  class="w-full text-sm border-slate-200 shadow-sm rounded-md"
+										  rows="4">{{ form.result.value|default:form.instance.result }}</textarea>
+							</div>
+
+							<!-- Submit / Cancel Buttons -->
+							<div class="flex justify-center mt-6 space-x-4">
+								<button type="submit" style="background-color:#1e3c98"
+										class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+									{% if form.instance.id %}Update Lab Test{% else %}Save Lab Test{% endif %}
+								</button>
+								<a href="{% url 'labtest_list' %}" style="margin-left:0.5%;background-color:#1e3c98"
+								   class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-md">
+									Cancel
+								</a>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+            </div>
+            <!-- END: Content -->
+        </div>
+    </div>
+{% endblock %}

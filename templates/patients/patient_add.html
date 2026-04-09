@@ -1,0 +1,152 @@
+<!-- templates/property_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Patient Add - CRM{% endblock %}
+
+{% block content %} 
+    <div class="rubick px-5 sm:px-8 py-5 before:content-[''] before:bg-gradient-to-b before:from-theme-1 before:to-theme-2 dark:before:from-darkmode-800 dark:before:to-darkmode-800 before:fixed before:inset-0 before:z-[-1]">
+        <!-- BEGIN: Mobile Menu -->
+        {% include 'partials/mobile.html' %}
+        <!-- END: Mobile Menu -->
+        <div class="mt-[4.7rem] flex md:mt-0">
+            <!-- BEGIN: Side Menu -->
+            {% include 'partials/sidebar_list.html' %}
+            <!-- END: Side Menu -->
+            <!-- BEGIN: Content -->
+            <div class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
+                <!-- BEGIN: Top Bar -->  
+				{% include 'partials/header.html' %}               
+                
+              <!-- Patient Form -->
+				<h2 class="intro-y mt-10 text-lg font-medium">Patient Information</h2>
+				<div class="mt-5 grid grid-cols-12 gap-6">
+					<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+						<div class="p-8 bg-white rounded-lg shadow-lg border border-gray-200">
+							<h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+								{% if form.instance.id %}Edit Patient{% else %}Add Patient{% endif %}
+							</h1>
+
+							<form method="POST" enctype="multipart/form-data">
+								{% csrf_token %}
+
+								<!-- First Name -->
+								<div class="mb-6">
+									<label for="first_name" class="font-medium text-lg text-gray-700">First Name</label>
+									<input type="text" id="first_name" name="first_name" value="{{ form.first_name.value }}"
+										   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									{% if form.first_name.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.first_name.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Last Name -->
+								<div class="mb-6">
+									<label for="last_name" class="font-medium text-lg text-gray-700">Last Name</label>
+									<input type="text" id="last_name" name="last_name" value="{{ form.last_name.value }}"
+										   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									{% if form.last_name.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.last_name.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Date of Birth -->
+								<div class="mb-6">
+									<label for="date_of_birth" class="font-medium text-lg text-gray-700">Date of Birth</label>
+									<input type="date" id="date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value }}"
+										   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									{% if form.date_of_birth.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.date_of_birth.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Gender -->
+								<div class="mb-6">
+									<label for="gender" class="font-medium text-lg text-gray-700">Gender</label>
+									<select id="gender" name="gender" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+										<option value="Male" {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
+										<option value="Female" {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
+										<option value="Other" {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
+									</select>
+									{% if form.gender.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.gender.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Phone -->
+								<div class="mb-6">
+									<label for="phone" class="font-medium text-lg text-gray-700">Phone</label>
+									<input type="text" id="phone" name="phone" value="{{ form.phone.value }}"
+										   class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									{% if form.phone.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.phone.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Address -->
+								<div class="mb-6">
+									<label for="address" class="font-medium text-lg text-gray-700">Address</label>
+									<textarea id="address" name="address"
+											  class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>{{ form.address.value }}</textarea>
+									{% if form.address.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.address.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Photo Upload -->
+								<div class="mb-6">
+									<label for="photo" class="font-medium text-lg text-gray-700">Photo</label>
+									<input type="file" id="photo" name="photo"
+										   class="w-full text-sm border-slate-200 shadow-sm rounded-md">
+									{% if form.photo.errors %}
+										<ul class="text-red-600 mt-1">
+											{% for error in form.photo.errors %}
+												<li>{{ error }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+
+								<!-- Submit / Cancel Buttons -->
+								<div class="flex justify-center mt-6 space-x-4">
+									<button type="submit" style="background-color:#1e3c98" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+										{% if form.instance.id %}Update Patient{% else %}Save Patient{% endif %}
+									</button>
+									<a href="{% url 'patient_list' %}" style="margin-left:0.5%;background-color:#1e3c98" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-md">
+										Cancel
+									</a>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+            </div>
+            <!-- END: Content -->
+        </div>
+    </div>
+{% endblock %}

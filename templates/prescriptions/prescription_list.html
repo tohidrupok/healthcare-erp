@@ -1,0 +1,163 @@
+<!-- templates/property_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Prescription List - CRM{% endblock %}
+
+{% block content %} 
+<style>
+    .message.success {
+        color: green;
+        background-color: #d4edda;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .message.error {
+        color: red;
+        background-color: #f8d7da;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style> 
+    <div class="rubick px-5 sm:px-8 py-5 before:content-[''] before:bg-gradient-to-b before:from-theme-1 before:to-theme-2 dark:before:from-darkmode-800 dark:before:to-darkmode-800 before:fixed before:inset-0 before:z-[-1]">
+        <!-- BEGIN: Mobile Menu -->
+        {% include 'partials/mobile.html' %}
+        <!-- END: Mobile Menu -->
+        <div class="mt-[4.7rem] flex md:mt-0">
+            <!-- BEGIN: Side Menu -->
+            {% include 'partials/sidebar_list.html' %}
+            <!-- END: Side Menu -->
+            <!-- BEGIN: Content -->
+            <div class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
+                <!-- BEGIN: Top Bar -->  
+                {% include 'partials/header.html' %}
+                <!-- END: Top Bar -->
+            
+                <h2 class="intro-y mt-10 text-lg font-medium">Prescription List</h2>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li class="message {{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="mt-5 grid grid-cols-12 gap-6">
+                    <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center sm:flex-nowrap">
+                        <a href="{% url 'prescription_add' %}">
+                            <button data-tw-merge="" class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 bg-primary border-primary text-white mr-2 shadow-md">Add New Prescription</button>
+                        </a>
+                        <a href="{% url 'prescription_list' %}">
+                            <button data-tw-merge="" class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 bg-primary border-primary text-white mr-2 shadow-md">Refresh</button>
+                        </a>
+                        <div class="mx-auto hidden text-slate-500 md:block">                             </div>
+            
+                        <div class="mt-3 w-full sm:ml-auto sm:mt-0 sm:w-auto md:ml-0">                           
+                            <div class="relative w-56 text-slate-500 mb-4">
+                                <input id="searchInput" type="text" placeholder="Search..." class="w-full p-2 text-sm border rounded-md shadow-sm focus:ring-4 focus:ring-primary" oninput="handleSearch()">
+                                <i class="absolute inset-y-0 right-0 my-auto mr-3 h-4 w-4">🔍</i>
+                            </div>
+                        </div>
+                    </div>            
+                 <!-- BEGIN: Lab Tests List -->
+						<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+							<table class="w-full text-left border-separate border-spacing-y-[10px]">
+								<thead>
+									<tr>
+										<th class="px-5 py-3 border-b">Doctor</th>
+										<th class="px-5 py-3 border-b">Patient</th>
+										<th class="px-5 py-3 border-b">Title</th>
+										<th class="px-5 py-3 border-b">Date</th>
+										<th class="px-5 py-3 border-b">Status</th>
+										<th class="px-5 py-3 border-b">Created At</th>
+										<th class="px-5 py-3 border-b text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody id="tableBody">
+									{% for prescription in prescriptions %}
+									<tr class="bg-white">
+										<!-- Doctor -->
+										<td class="px-5 py-3 border-b">
+											{% if prescription.doctor %}
+												Dr. {{ prescription.doctor.user.first_name }} {{ prescription.doctor.user.last_name }}
+											{% elif prescription.appointment.doctor %}
+												Dr. {{ prescription.appointment.doctor.user.first_name }} {{ prescription.appointment.doctor.user.last_name }}
+											{% else %}
+												N/A
+											{% endif %}
+										</td>
+
+										<!-- Patient -->
+										<td class="px-5 py-3 border-b">
+											{% if prescription.patient %}
+												{{ prescription.patient.first_name }} {{ prescription.patient.last_name }}
+											{% elif prescription.appointment.patient %}
+												{{ prescription.appointment.patient.first_name }} {{ prescription.appointment.patient.last_name }}
+											{% else %}
+												N/A
+											{% endif %}
+										</td>
+
+										<!-- Title -->
+										<td class="px-5 py-3 border-b">{{ prescription.title }}</td>
+
+										<!-- Date -->
+										<td class="px-5 py-3 border-b">
+											{% if prescription.date %}
+												{{ prescription.date|date:"d M Y" }}
+											{% else %}
+												N/A
+											{% endif %}
+										</td>
+
+										<!-- Status -->
+										<td class="px-5 py-3 border-b">{{ prescription.get_status_display }}</td>
+
+										<!-- Created At -->
+										<td class="px-5 py-3 border-b">
+											{% if prescription.created_at %}
+												{{ prescription.created_at|date:"d M Y, g:i a" }}
+											{% else %}
+												N/A
+											{% endif %}
+										</td>
+
+										<!-- Actions -->
+										<td class="px-5 py-3 border-b text-center">
+											<a href="{% url 'prescription_details' prescription.id %}" class="text-blue-600 hover:text-blue-700">Details</a> |
+											<a href="#" class="text-blue-600 hover:text-blue-700">Edit</a> |
+											<a href="{% url 'prescription_delete' prescription.id %}" class="text-red-600 hover:text-red-700" onclick="return confirm('Are you sure?')">Delete</a>
+										</td>
+									</tr>
+									{% empty %}
+									<tr>
+										<td colspan="7" class="text-center">No prescriptions found.</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+
+							<script>
+								// Search functionality
+								function handleSearch() {
+									let searchValue = document.getElementById('searchInput').value.toLowerCase();
+									let rows = document.querySelectorAll("#tableBody tr");
+
+									rows.forEach(row => {
+										let columns = row.getElementsByTagName("td");
+										let rowText = "";
+										for (let i = 0; i < columns.length; i++) {
+											rowText += columns[i].textContent.toLowerCase();
+										}
+										row.style.display = rowText.includes(searchValue) ? "" : "none";
+									});
+								}
+							</script>
+						</div>
+                </div>
+            </div>
+            
+            <!-- END: Content -->
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #1f3bb3;
+            font-weight: bold;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .contact {
+            text-align: center;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .profile-card {
+            background-color: #fff;
+            border: 2px solid #1f3bb3; /* main boundary */
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            padding: 20px 30px;
+            align-items: center;
+        }
+
+        .profile-image {
+            flex: 0 0 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #1f3bb3;
+            margin-right: 30px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 15px 0;
+            font-size: 24px;
+            color: #1f3bb3;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .profile-info p strong {
+            color: #1f3bb3;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .buttons a, .buttons button {
+            background-color: #1f3bb3;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .buttons a:hover, .buttons button:hover {
+            background-color: #164194;
+        }
+
+        @media print {
+            .buttons {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">Medicare CRM</div>
+        <div class="contact">
+            Gulshan-1 (House-SE3, Road-137), Gulshan Medicare at Lotus <br>
+            Kamal Tower Two (Gulshan South Avenue), <br> 
+            International Medicare Ltd., Bashundhara R/A
+        </div>
+
+        <!-- Patient Profile Card -->
+        <div class="profile-card">
+            <div class="profile-image">
+                {% if patient.photo %}
+                    <img src="{{ patient.photo.url }}" alt="Patient Photo">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" alt="No Photo">
+                {% endif %}
+            </div>
+            <div class="profile-info">
+                <h2>{{ patient.first_name }} {{ patient.last_name }}</h2>
+                <p><strong>Date of Birth:</strong> {{ patient.date_of_birth|date:"d M Y" }}</p>
+                <p><strong>Gender:</strong> {{ patient.gender }}</p>
+                <p><strong>Phone:</strong> {{ patient.phone }}</p>
+                <p><strong>Address:</strong> {{ patient.address }}</p>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="buttons">
+            <a href="{% url 'patient_list' %}">Back to List</a>
+            <button onclick="window.print()">Print</button>
+        </div>
+    </div>
+</body>
+</html>

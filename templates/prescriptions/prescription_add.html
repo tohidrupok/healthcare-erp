@@ -1,0 +1,116 @@
+<!-- templates/property_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Prescription Add - CRM{% endblock %}
+
+{% block content %} 
+    <div class="rubick px-5 sm:px-8 py-5 before:content-[''] before:bg-gradient-to-b before:from-theme-1 before:to-theme-2 dark:before:from-darkmode-800 dark:before:to-darkmode-800 before:fixed before:inset-0 before:z-[-1]">
+        <!-- BEGIN: Mobile Menu -->
+        {% include 'partials/mobile.html' %}
+        <!-- END: Mobile Menu -->
+        <div class="mt-[4.7rem] flex md:mt-0">
+            <!-- BEGIN: Side Menu -->
+            {% include 'partials/sidebar_list.html' %}
+            <!-- END: Side Menu -->
+            <!-- BEGIN: Content -->
+            <div class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[30px] bg-slate-100 px-4 pb-10 before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
+                <!-- BEGIN: Top Bar -->  
+				{% include 'partials/header.html' %}               
+          <h2 class="intro-y mt-10 text-lg font-medium">Prescription Information</h2>
+			<div class="mt-5 grid grid-cols-12 gap-6">
+				<div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+					<div class="p-8 bg-white rounded-lg shadow-lg border border-gray-200">
+						<h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+							{% if form.instance.id %}Edit Prescription{% else %}Add Prescription{% endif %}
+						</h1>
+
+						<form method="POST" enctype="multipart/form-data">
+							{% csrf_token %}
+
+							<!-- Appointment -->
+							<div class="mb-6">
+								<label for="appointment" class="font-medium text-lg text-gray-700">Appointment</label>
+								<select id="appointment" name="appointment" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									<option value="">Select Appointment</option>
+									{% for appointment in appointments %}
+										<option value="{{ appointment.id }}" {% if form.instance.appointment == appointment %}selected{% endif %}>
+											Dr. {{ appointment.doctor.user.first_name }} {{ appointment.doctor.user.last_name }} - 
+											{{ appointment.patient.first_name }} {{ appointment.patient.last_name }} ({{ appointment.appointment_date|date:"d M Y" }})
+										</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<!-- Title -->
+							<div class="mb-6">
+								<label for="title" class="font-medium text-lg text-gray-700">Title</label>
+								<input type="text" id="title" name="title"
+									   value="{{ form.title.value|default:form.instance.title }}"
+									   class="w-full text-sm border-slate-200 shadow-sm rounded-md">
+							</div>
+
+							<!-- Date -->
+							<div class="mb-6">
+								<label for="date" class="font-medium text-lg text-gray-700">Date</label>
+								<input type="date" id="date" name="date"
+									   value="{{ form.date.value|default:form.instance.date|date:'Y-m-d' }}"
+									   class="w-full text-sm border-slate-200 shadow-sm rounded-md">
+							</div>
+
+							<!-- Status -->
+							<div class="mb-6">
+								<label for="status" class="font-medium text-lg text-gray-700">Status</label>
+								<select id="status" name="status" class="w-full text-sm border-slate-200 shadow-sm rounded-md" required>
+									<option value="">Select Status</option>
+									<option value="PENDING" {% if form.instance.status == "PENDING" %}selected{% endif %}>Pending</option>
+									<option value="IN_PROGRESS" {% if form.instance.status == "IN_PROGRESS" %}selected{% endif %}>In Progress</option>
+									<option value="COMPLETED" {% if form.instance.status == "COMPLETED" %}selected{% endif %}>Completed</option>
+								</select>
+							</div>
+
+							<!-- Medicines -->
+							<div class="mb-6">
+								<label for="medicines" class="font-medium text-lg text-gray-700">Medicines</label>
+								<textarea id="medicines" name="medicines"
+										  class="w-full text-sm border-slate-200 shadow-sm rounded-md"
+										  rows="4" required>{{ form.medicines.value|default:form.instance.medicines }}</textarea>
+							</div>
+
+							<!-- Dosage -->
+							<div class="mb-6">
+								<label for="dosage" class="font-medium text-lg text-gray-700">Dosage</label>
+								<textarea id="dosage" name="dosage"
+										  class="w-full text-sm border-slate-200 shadow-sm rounded-md"
+										  rows="4" required>{{ form.dosage.value|default:form.instance.dosage }}</textarea>
+							</div>
+
+							<!-- Notes -->
+							<div class="mb-6">
+								<label for="notes" class="font-medium text-lg text-gray-700">Notes</label>
+								<textarea id="notes" name="notes"
+										  class="w-full text-sm border-slate-200 shadow-sm rounded-md"
+										  rows="4">{{ form.notes.value|default:form.instance.notes }}</textarea>
+							</div>
+
+							<!-- Submit / Cancel Buttons -->
+							<div class="flex justify-center mt-6 space-x-4">
+								<button type="submit" style="background-color:#1e3c98"
+										class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md">
+									{% if form.instance.id %}Update Prescription{% else %}Save Prescription{% endif %}
+								</button>
+								<a href="{% url 'prescription_list' %}" style="margin-left:0.5%;background-color:#1e3c98"
+								   class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-md">
+									Cancel
+								</a>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+            </div>
+            <!-- END: Content -->
+        </div>
+    </div>
+{% endblock %}

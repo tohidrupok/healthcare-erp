@@ -1,0 +1,1727 @@
+{% load static %}
+
+<div class="mobile-menu group top-0 inset-x-0 fixed bg-theme-1/90 z-[60] border-b border-white/[0.08] dark:bg-darkmode-800/90 md:hidden before:content-[''] before:w-full before:h-screen before:z-10 before:fixed before:inset-x-0 before:bg-black/90 before:transition-opacity before:duration-200 before:ease-in-out before:invisible before:opacity-0 [&.mobile-menu--active]:before:visible [&.mobile-menu--active]:before:opacity-100">
+    <div class="flex h-[70px] items-center px-3 sm:px-8">
+        <a class="mr-auto flex" href="">
+            <img class="w-6" src="{% static 'images/btp-logo.jpeg' %}" alt="BTP-ERP">
+        </a>
+        <a class="mobile-menu-toggler" href="#">
+            <i data-tw-merge="" data-lucide="bar-chart2" class="stroke-1.5 h-8 w-8 -rotate-90 transform text-white"></i>
+        </a>
+    </div>
+    <div class="scrollable h-screen z-20 top-0 left-0 w-[270px] -ml-[100%] bg-primary transition-all duration-300 ease-in-out dark:bg-darkmode-800 [&[data-simplebar]]:fixed [&_.simplebar-scrollbar]:before:bg-black/50 group-[.mobile-menu--active]:ml-0">
+        <a href="#" class="fixed top-0 right-0 mt-4 mr-4 transition-opacity duration-200 ease-in-out invisible opacity-0 group-[.mobile-menu--active]:visible group-[.mobile-menu--active]:opacity-100">
+            <i data-tw-merge="" data-lucide="x-circle" class="stroke-1.5 mobile-menu-toggler h-8 w-8 -rotate-90 transform text-white"></i>
+        </a>
+        <ul class="py-2">
+            <!-- BEGIN: First Child -->
+            <li>
+                <a href="{% url 'dashboard' %}" class="menu menu--active" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="home" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Dashboard
+                    </div>
+                </a>
+            </li>
+			 {% if request.session.department == "engineer" or request.session.department == "hrm" or request.session.department == "accounts"  or  request.session.department == "purchase"  or request.session.department == "admin" %}    
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Properties
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'employee_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Software User
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'customer_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Customer Add 
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'project_location_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Project Location
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'boq_contructor_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Contructor Add
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'boq_supplier_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                 Supplier  Add
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'capital_account_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                 Others Head
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'expense_head_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                 Expense Head 
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'petty_cash_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                  Hand Purchase
+                            </div>
+                        </a>
+                    </li>
+				</ul>
+			</li>
+			{% endif %} 
+			{% if request.session.department == "engineer" or request.session.department == "admin" or request.session.department == "accounts"  %}  
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Project
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'first_level_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Project List
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu--active" href="{% url 'boq_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               BOQ List 
+                            </div>
+                        </a>
+                    </li>					
+				</ul>
+			</li>				
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Contractor
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu" href="{% url 'activity_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Activity List
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Comparation Entry 
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu" href="{% url 'materialentry_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Item List
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+			{% endif %} 
+			{% if request.session.department == "admin" %} 
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Property/Land
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'land_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Land Purchase List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'property_owner_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Properties Owner List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'joint_venture_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Joint Venture List
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu" href="{% url 'jv_partner_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                JV Partner List
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu" href="{% url 'lease_agreement_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Lease Agreement List
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu menu" href="{% url 'lease_payment_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Lease Payment List
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Document
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'display' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               All Document
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'document_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Document List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'upload_document' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Upload Document
+                            </div>
+                        </a>
+                    </li>					
+                </ul>
+            </li>
+			{% endif %} 
+			{% if request.session.department == "restaurant"  or request.session.department == "admin" %}
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Requisition
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Requisition List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'restaurant_requisition_category' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Item Category
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'restaurant_item_name' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Item Name
+                            </div>
+                        </a>
+                    </li>					
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        HRM
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_employee_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Employee List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_employee_details' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Employee Details
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_attendance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Attendance List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_advance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Advance Payment
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Head of Account
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'head_account_name' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Head Of Account
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="{% url 'account_name_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Account Name
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Customer
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_customer_name' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Customer List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Customer Reports
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Supplier
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_supplier_name' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Supplier List
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Sales
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_item_amount_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Sales Amount Add
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_sales_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Sales Add
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu menu--active" href="{% url 'restaurant_sales_report' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Sales Reports
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Expense
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Expense List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Expense Category
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Expense Name
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Accounting
+                        <div class="menu__sub-icon transform rotate-180">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="menu__sub-open">
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Received List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Payment List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu menu--active" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Ledger List
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+			{% endif %} 
+			{% if request.session.department == "hrm" or request.session.department == "accounts"  or  request.session.department == "purchase"  or request.session.department == "admin" %}    
+			<li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        HRM
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                     <li>
+                        <a class="menu menu--active" href="{% url 'rda_employee_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Employee Add
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'employee_details' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Employee Details
+                            </div>
+                        </a>
+                    </li>  
+                    <li>
+                        <a class="menu" href="{% url 'attendance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Attendance List
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'payroll_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Payroll List
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'advance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Advance Paymentt
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'allowances_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Allowance Payment
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu" href="{% url 'salary_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Salary Payment
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu" href="{% url 'leave_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Leave List
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+			{% endif %} 
+			{% if request.session.department == "engineer" or request.session.department == "purchase" or request.session.department == "accounts" or request.session.department == "admin" %} 
+			 <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Requisition
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'requisition_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Requisition List
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'bill_requisition_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Bill Requisition List
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'requisition_comparative_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Requis. Comparative
+                            </div>
+                        </a>
+                    </li> 
+					<li>
+                        <a class="menu" href="{% url 'project_boq_requisition_summary' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                BOQ vs Requisitio
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="#">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Revise Requisition
+                            </div>
+                        </a>
+                    </li> 
+                     <li>
+                        <a class="menu" href="{% url 'requisition_invoice_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Requisition Invoice
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Purchase
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'purchase_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Purchase Order
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'purchase_invoice_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Purchase Invoice
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'return_purchase_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Return Purchase
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Inventory
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'inventory_item_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Inventory List
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'inventory_stock_summary' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Stock Summary
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'inventory_use_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Inventory Use
+                            </div>
+                        </a>
+                    </li>
+					 <li>
+                        <a class="menu" href="{% url 'requisition_category' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Product Category
+                            </div>
+                        </a>
+                    </li> 
+					 <li>
+                        <a class="menu" href="{% url 'head_of_requisition_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Product Name
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+              <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        CRM
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                     <li>
+                        <a class="menu" href="{% url 'customer_lead_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Lead Generate List
+                            </div>
+                        </a>
+                    </li> 
+					<li>
+                        <a class="menu" href="{% url 'lead_followup_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Lead Followup
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Sales
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'flat_plot_summary' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Flat/Plot Add
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'flat_plot_property_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                Property List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'flat_plot_sales' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Flat/Plot Sales
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Expense
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'expense_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Expense List
+                            </div>
+                        </a>
+                    </li> 
+                     <li>
+                        <a class="menu" href="{% url 'grouped_requisitions' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Expense Requisition.
+                            </div>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+			 {% endif %} 
+			{% if request.session.department == "accounts" or request.session.department == "admin" %}
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Accounting
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'cash_type_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Cash Type (Method)
+                            </div>
+                        </a>
+                    </li>  
+                    <li>
+                        <a class="menu" href="{% url 'head_of_account_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Account Head 
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'creditvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Received Voucher List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'debitvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Payment Voucher List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'journal_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Journal Voucher List
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'openbalance_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Opening Balance
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'ledger_manage_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Ledger Manage
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'loanvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Payable/Receivable
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'cashType_balance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                 Cash Type Balance
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'transaction_history_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Transaction History
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'transfer_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Balance Transfer 
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'upload_statement' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Upload Statement
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'reconciliation_dashboard' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Reconciliation Dashboard
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Reports
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'reports_manage_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Genarel Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'employee_summary_report' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Employee Ledger
+                            </div>
+                        </a>
+                    </li> 
+					 <li>
+                        <a class="menu" href="{% url 'customer_summary_report' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Customer Ledger
+                            </div>
+                        </a>
+                    </li>
+					 <li>
+                        <a class="menu" href="{% url 'purchase_invoice_filter' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Purchase Ledger
+                            </div>
+                        </a>
+                    </li>
+					 <li>
+                        <a class="menu" href="{% url 'project_ledger_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Project Ledger
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu" href="{% url 'invStock_ledger_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Inventory Ledger
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'bank_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Back Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'transaction_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Transaction Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'topsheet_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Top Sheet Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'monthly_collection_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Monthly Collection
+                            </div>
+                        </a>
+                    </li>
+					
+                </ul>
+            </li>
+            <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Accounting
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'cash_type_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Cash Type (Method)
+                            </div>
+                        </a>
+                    </li>  
+                    <li>
+                        <a class="menu" href="{% url 'head_of_account_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Account Head 
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'creditvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Received Voucher List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'debitvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Payment Voucher List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'journal_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Journal Voucher List
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'openbalance_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Opening Balance
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'ledger_manage_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Ledger Manage
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'loanvoucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Payable/Receivable
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'cashType_balance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                                 Cash Type Balance
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'transaction_history_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Transaction History
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'transfer_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Balance Transfer 
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'upload_statement' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Upload Statement
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'reconciliation_dashboard' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Reconciliation Dashboard
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Reports
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'reports_manage_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Genarel Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'employee_summary_report' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Employee Ledger
+                            </div>
+                        </a>
+                    </li> 
+					 <li>
+                        <a class="menu" href="{% url 'customer_summary_report' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Customer Ledger
+                            </div>
+                        </a>
+                    </li>
+					 <li>
+                        <a class="menu" href="{% url 'purchase_invoice_filter' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Purchase Ledger
+                            </div>
+                        </a>
+                    </li>
+					 <li>
+                        <a class="menu" href="{% url 'project_ledger_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Project Ledger
+                            </div>
+                        </a>
+                    </li>
+					<li>
+                        <a class="menu" href="{% url 'invStock_ledger_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                              Inventory Ledger
+                            </div>
+                        </a>
+                    </li>
+                     <li>
+                        <a class="menu" href="{% url 'bank_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Back Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'transaction_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Transaction Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'topsheet_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Top Sheet Reports
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a class="menu" href="{% url 'monthly_collection_reports_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Monthly Collection
+                            </div>
+                        </a>
+                    </li>
+					
+                </ul>
+            </li>
+             <li>
+                <a class="menu" href="javascript:;">
+                    <div class="menu__icon">
+                        <i data-tw-merge="" data-lucide="shopping-bag" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                    <div class="menu__title">
+                        Tenant
+                        <div class="menu__sub-icon ">
+                            <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="">
+                    <li>
+                        <a class="menu" href="{% url 'project_page' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Project List
+                            </div>
+                        </a>
+                    </li> 
+                     <li>
+                        <a class="menu" href="{% url 'room_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Room List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'varatiya_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Tenant List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'rent_form_and_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Rent List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'rent_search' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Deactive Room
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'bill_generator_home' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Bills Generate
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'tenant_advance_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Advance Payment
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'payment_tenant_advance' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Adjust Payment
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'tenant_ledger_input_page' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Ledger Report
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'bill_summary_page' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Receivable Voucher
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'receive_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Received Voucher List
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu" href="{% url 'payment_voucher_list' %}">
+                            <div class="menu__icon">
+                                <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                            </div>
+                            <div class="menu__title">
+                               Payment Voucher List
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}  
+            <!-- END: First Child -->
+        </ul>
+    </div>
+</div>

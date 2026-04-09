@@ -1,0 +1,170 @@
+{% load static %}
+
+<nav class="side-nav hidden w-[80px] overflow-x-hidden pb-16 pr-5 md:block xl:w-[230px]">
+    <a class="flex items-center pt-4 pl-5 intro-x" href="">
+        <img src="{% static 'images/medicare-logo.png' %}" alt="BTP ERP">
+    </a>
+    <div class="my-6 side-nav__divider"></div>
+    <ul>
+        <li>
+            <a href="{% url 'dashboard' %}" class="side-menu side-menu--active">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="home" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Dashboard
+                </div>
+            </a>
+        </li> 
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Patients 
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">
+                 <li>
+                    <a href="{% url 'patient_list' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                            Patients List
+                        </div>
+                    </a>
+                </li> 				
+            </ul>
+        </li>
+		<li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Doctors 
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">
+                 <li>
+                    <a href="{% url 'doctor_list' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                            Doctors List
+                        </div>
+                    </a>
+                </li>                			
+            </ul>
+        </li>
+		<li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Appointments 
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">
+                 <li>
+                    <a href="{% url 'appointment_list' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                            Appointments List
+                        </div>
+                    </a>
+                </li> 				
+            </ul>
+        </li> 
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Lab Test 
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">
+                 <li>
+                    <a href="{% url 'labtest_list' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                            Lab Tests List
+                        </div>
+                    </a>
+                </li> 				
+            </ul>
+        </li> 
+         <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Prescriptions
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">
+                 <li>
+                    <a href="{% url 'prescription_list' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                            Prescriptions List
+                        </div>
+                    </a>
+                </li> 				
+            </ul>
+        </li> 
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon">
+                    <i data-tw-merge="" data-lucide="map-pin" class="stroke-1.5 w-5 h-5"></i>
+                </div>
+                <div class="side-menu__title">
+                    Doctors Panel
+                    <div class="side-menu__sub-icon ">
+                        <i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 w-5 h-5"></i>
+                    </div>
+                </div>
+            </a>
+            <ul class="">                
+                <li>
+                    <a href="{% url 'doctor_consultation_panel' %}" class="side-menu">
+                        <div class="side-menu__icon">
+                            <i data-tw-merge="" data-lucide="activity" class="stroke-1.5 w-5 h-5"></i>
+                        </div>
+                        <div class="side-menu__title">
+                           Consultantcy
+                        </div>
+                    </a>
+                </li> 				
+            </ul>
+        </li>			
+    </ul>
+</nav>
