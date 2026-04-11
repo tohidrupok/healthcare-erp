@@ -7,7 +7,7 @@ from lab.models import LabTest
 
 
 
-# 🧾 Prescription (Doctor creates)
+# Prescription (Doctor creates)
 class Prescription(models.Model):
     STATUS_CHOICES = [
         ('PENDING', 'Pending'),
@@ -56,7 +56,7 @@ class Prescription(models.Model):
 
 
 
-# 💊 Prescription Medicine Items
+# Prescription Medicine Items
 class PrescriptionItem(models.Model):
     prescription = models.ForeignKey(
         Prescription,
@@ -77,7 +77,7 @@ class PrescriptionItem(models.Model):
         return f"{self.medicine} ({self.dosage})"
 
 
-# 🔥 LAB TEST PROCESS MODEL (FULL POWER MODEL)
+# LAB TEST PROCESS MODEL (FULL POWER MODEL)
 class PrescriptionTest(models.Model):
 
     # priority system
@@ -115,7 +115,7 @@ class PrescriptionTest(models.Model):
         default='PENDING'
     )
 
-    # 👨‍🔬 who processed this test
+    #  who processed this test
     lab_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
@@ -124,7 +124,7 @@ class PrescriptionTest(models.Model):
         related_name='processed_tests'
     )
 
-    # 📊 result data
+    #  result data
     result = models.TextField(blank=True, null=True)
 
     report_file = models.FileField(
@@ -133,7 +133,7 @@ class PrescriptionTest(models.Model):
         null=True
     )
 
-    # 📏 medical reference range
+    # medical reference range
     reference_range = models.CharField(
         max_length=200,
         blank=True,

@@ -1,6 +1,6 @@
 from django.db import models
 
-# 🔬 Lab Test Master
+# Lab Test Master
 class LabTest(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
