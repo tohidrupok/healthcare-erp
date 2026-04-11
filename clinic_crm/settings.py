@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'lab_tests',
     'prescriptions',
     'dashboard',
+    'pharmacy',
 ]
 
 MIDDLEWARE = [

@@ -71,7 +71,7 @@ def prescription_edit(request, pk):
     })
 
 # -----------------------------
-# PRESCRIPTION DETAILS
+# PRESCRIPTION DETAILS VIEW
 # -----------------------------
 def prescription_details(request, pk):
     prescription = get_object_or_404(Prescription, pk=pk)
@@ -79,9 +79,9 @@ def prescription_details(request, pk):
         "prescription": prescription
     })
 
-# -----------------------------
-# DELETE PRESCRIPTION
-# -----------------------------
+# ---------------------------------
+# DELETE PRESCRIPTION FROM DATABASE
+# ---------------------------------
 def prescription_delete(request, pk):
     prescription = get_object_or_404(Prescription, pk=pk)
 
