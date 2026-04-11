@@ -20,10 +20,9 @@ INSTALLED_APPS = [
     'doctors',
     'patients',
     'appointments',
-    'lab_tests',
-    'prescriptions',
-    'dashboard',
     'pharmacy',
+    'lab',
+    'clinical',
 ]
 
 MIDDLEWARE = [

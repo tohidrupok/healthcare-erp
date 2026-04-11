@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from patients.models import Patient
-from prescriptions.models import Prescription
-from lab_tests.models import LabTestRequest, TestType
+from clinical.models import Prescription
+from lab.models import LabTest
 from django.utils import timezone
 from appointments.models import Appointment
 from django.contrib import messages
